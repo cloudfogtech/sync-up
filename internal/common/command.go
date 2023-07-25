@@ -16,5 +16,5 @@ func (*Command) Version() string {
 }
 
 func (*Command) Epilogue() string {
-	return "For more information visit https://github.com/catfishlty/syncup"
+	return "For more information visit https://github.com/cloudfogtech/syncup"
 }

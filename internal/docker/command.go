@@ -4,7 +4,7 @@ import (
 	"bufio"
 	"context"
 	"errors"
-	"github.com/catfishlty/sync-up/internal/utils"
+	"github.com/cloudfogtech/sync-up/internal/utils"
 	"github.com/docker/docker/api/types"
 	log "github.com/sirupsen/logrus"
 	"io"

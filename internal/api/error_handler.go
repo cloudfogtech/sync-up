@@ -7,7 +7,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/catfishlty/sync-up/internal/exp"
+	"github.com/cloudfogtech/sync-up/internal/exp"
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
 )

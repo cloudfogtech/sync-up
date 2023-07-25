@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 	"github.com/alexflint/go-arg"
-	"github.com/catfishlty/sync-up/internal/api"
-	"github.com/catfishlty/sync-up/internal/common"
+	"github.com/cloudfogtech/sync-up/internal/api"
+	"github.com/cloudfogtech/sync-up/internal/common"
 	log "github.com/sirupsen/logrus"
 	"golang.org/x/sync/errgroup"
 )

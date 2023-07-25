@@ -1,8 +1,8 @@
 package data
 
 import (
-	"github.com/catfishlty/sync-up/internal/common"
-	"github.com/catfishlty/sync-up/internal/utils"
+	"github.com/cloudfogtech/sync-up/internal/common"
+	"github.com/cloudfogtech/sync-up/internal/utils"
 )
 
 func (db *DB) GetLog(serviceId, logId string) (Log, error) {

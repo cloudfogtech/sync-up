@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/catfishlty/sync-up/internal/exp"
-	"github.com/catfishlty/sync-up/internal/sync"
+	"github.com/cloudfogtech/sync-up/internal/exp"
+	"github.com/cloudfogtech/sync-up/internal/sync"
 	"github.com/gin-gonic/gin"
 )
 

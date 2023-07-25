@@ -2,7 +2,7 @@ package sync
 
 import (
 	"fmt"
-	"github.com/catfishlty/sync-up/internal/docker"
+	"github.com/cloudfogtech/sync-up/internal/docker"
 	log "github.com/sirupsen/logrus"
 	"path/filepath"
 )

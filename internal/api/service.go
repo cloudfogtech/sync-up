@@ -2,11 +2,11 @@ package api
 
 import (
 	"errors"
-	"github.com/catfishlty/sync-up/internal/common"
-	"github.com/catfishlty/sync-up/internal/data"
-	"github.com/catfishlty/sync-up/internal/env"
-	"github.com/catfishlty/sync-up/internal/sync"
-	"github.com/catfishlty/sync-up/internal/utils"
+	"github.com/cloudfogtech/sync-up/internal/common"
+	"github.com/cloudfogtech/sync-up/internal/data"
+	"github.com/cloudfogtech/sync-up/internal/env"
+	"github.com/cloudfogtech/sync-up/internal/sync"
+	"github.com/cloudfogtech/sync-up/internal/utils"
 	"github.com/gin-gonic/gin"
 	gorm_logrus "github.com/onrik/gorm-logrus"
 	log "github.com/sirupsen/logrus"

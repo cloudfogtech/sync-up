@@ -3,9 +3,9 @@ package sync
 import (
 	"errors"
 	"fmt"
-	"github.com/catfishlty/sync-up/internal/common"
-	"github.com/catfishlty/sync-up/internal/docker"
-	"github.com/catfishlty/sync-up/internal/env"
+	"github.com/cloudfogtech/sync-up/internal/common"
+	"github.com/cloudfogtech/sync-up/internal/docker"
+	"github.com/cloudfogtech/sync-up/internal/env"
 )
 
 type Manager struct {

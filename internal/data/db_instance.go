@@ -3,7 +3,7 @@ package data
 import (
 	"errors"
 
-	"github.com/catfishlty/sync-up/internal/common"
+	"github.com/cloudfogtech/sync-up/internal/common"
 	"github.com/glebarez/sqlite"
 	"gorm.io/driver/mysql"
 	"gorm.io/driver/postgres"

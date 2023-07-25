@@ -2,9 +2,9 @@ package api
 
 import (
 	jwt "github.com/appleboy/gin-jwt/v2"
-	"github.com/catfishlty/sync-up/internal/check"
-	"github.com/catfishlty/sync-up/internal/common"
-	"github.com/catfishlty/sync-up/internal/env"
+	"github.com/cloudfogtech/sync-up/internal/check"
+	"github.com/cloudfogtech/sync-up/internal/common"
+	"github.com/cloudfogtech/sync-up/internal/env"
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
 	"time"

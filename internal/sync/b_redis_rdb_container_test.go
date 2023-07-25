@@ -3,7 +3,7 @@ package sync
 import (
 	"testing"
 
-	"github.com/catfishlty/sync-up/internal/docker"
+	"github.com/cloudfogtech/sync-up/internal/docker"
 	log "github.com/sirupsen/logrus"
 )
 

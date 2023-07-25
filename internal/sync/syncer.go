@@ -3,8 +3,8 @@ package sync
 import (
 	"errors"
 	"fmt"
-	"github.com/catfishlty/sync-up/internal/docker"
-	"github.com/catfishlty/sync-up/internal/utils"
+	"github.com/cloudfogtech/sync-up/internal/docker"
+	"github.com/cloudfogtech/sync-up/internal/utils"
 	log "github.com/sirupsen/logrus"
 	"os"
 	"path/filepath"

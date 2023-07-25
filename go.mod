@@ -1,4 +1,4 @@
-module github.com/catfishlty/sync-up
+module github.com/cloudfogtech/sync-up
 
 go 1.20
 

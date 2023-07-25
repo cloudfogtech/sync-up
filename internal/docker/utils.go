@@ -3,7 +3,7 @@ package docker
 import (
 	"errors"
 
-	"github.com/catfishlty/sync-up/internal/utils"
+	"github.com/cloudfogtech/sync-up/internal/utils"
 )
 
 func ReadResultChan(resultChan *ResultChan) (string, error) {
