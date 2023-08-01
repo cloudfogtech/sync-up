@@ -108,7 +108,7 @@ func (s *Syncer) backup() (string, error) {
 		return "", errors.New(result)
 	}
 	containerDumpFilePath := s.backupper.ContainerDumpFilePath()
-	log.Infof("[Debug] containerDumpFilePath=%s", containerDumpFilePath)
+	log.Debugf("containerDumpFilePath: %s", containerDumpFilePath)
 	dumpFileName := filepath.Base(containerDumpFilePath)
 	tempFilePath := fmt.Sprintf("%s/%s", s.localDir, dumpFileName)
 	err = s.d.GetFileFromContainer(container, containerDumpFilePath, tempFilePath)

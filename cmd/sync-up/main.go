@@ -20,9 +20,15 @@ func main() {
 	if err != nil {
 		p.Fail(fmt.Sprintf("server start fail: %s", err.Error()))
 	}
+	err = s.StartScheduler()
+	if err != nil {
+		p.Fail(fmt.Sprintf("server start fail: %s", err.Error()))
+		return
+	}
 	httpServer, err := s.Serve()
 	if err != nil {
 		p.Fail(fmt.Sprintf("server start fail: %s", err.Error()))
+		return
 	}
 	g.Go(func() error {
 		return httpServer.ListenAndServe()

@@ -23,7 +23,7 @@ func (d *Docker) GetFileFromContainer(container types.Container, src, dest strin
 	}
 	defer reader.Close()
 	log.Debugf("CopyFromContainer, container=%s, src='%s'", container.ID, src)
-	log.Infof("Container Path Stat, name=%s, size=%d", stat.Name, stat.Size)
+	log.Infof("Container[%s] Path Stat, name=%s, size=%d", strings.Join(container.Names, ","), stat.Name, stat.Size)
 	i := strings.LastIndex(dest, "/")
 	if i != -1 {
 		err = os.MkdirAll(dest[:i], 0o755)
@@ -48,7 +48,7 @@ func (d *Docker) GetFileFromContainer(container types.Container, src, dest strin
 	if dest, err = filepath.Abs(dest); err != nil {
 		log.Errorf("can't find abs path for '%s'", dest)
 	}
-	log.Infof("File from Src to Dest, src=%s:%s, dest=local:%s", strings.Join(container.Names, ","), src, dest)
+	log.Infof("File from Container[%s]:'%s' to Local:'%s'", strings.Join(container.Names, ","), src, dest)
 	return nil
 }
 
@@ -88,6 +88,6 @@ func (d *Docker) SendFileToContainer(container types.Container, filePath, dest s
 		log.Errorf("CopyToContainer error, container=%s, dest='%s', %v", strings.Join(container.Names, ","), dest, err)
 		return err
 	}
-	log.Infof("File from src='%s->%s' to dest='%s:%s'", filePath, archiveTempFilePath, container.ID, dest)
+	log.Infof("File from Local:'%s->%s' to dest='Container[%s]:%s'", filePath, archiveTempFilePath, strings.Join(container.Names, ","), dest)
 	return nil
 }

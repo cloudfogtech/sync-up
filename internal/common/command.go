@@ -5,11 +5,7 @@ import (
 	"runtime"
 )
 
-type StartCommand struct {
-}
-type Command struct {
-	StartCommand *StartCommand `arg:"subcommand:start" help:"start application"`
-}
+type Command struct{}
 
 func (*Command) Version() string {
 	return fmt.Sprintf("%s %s for %s", Name, Version, runtime.GOOS)

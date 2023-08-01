@@ -2,9 +2,10 @@ package sync
 
 import (
 	"fmt"
+	"path/filepath"
+
 	"github.com/cloudfogtech/sync-up/internal/docker"
 	log "github.com/sirupsen/logrus"
-	"path/filepath"
 )
 
 type RCloneSyncOptions struct {
@@ -60,7 +61,7 @@ func (r *RClone) Sync(options RCloneSyncOptions) error {
 		commands = append(commands, "-P")
 	}
 	if options.BandwidthLimit != "" {
-		//TODO validate BandwidthLimit
+		// TODO validate BandwidthLimit
 		commands = append(commands, "--bwlimit", options.BandwidthLimit)
 	}
 	result, err := r.d.RunCommandSync(container, commands)
@@ -68,7 +69,7 @@ func (r *RClone) Sync(options RCloneSyncOptions) error {
 		log.Errorf("RClone sync error: %v", err)
 		return err
 	}
-	log.Infof("RClone Sync src='local:%s' to remote='%s:%s' success: %s", options.FilePath, options.RemoteName, options.RemotePath, result)
+	log.Infof("RClone Sync Local:'%s' to Remote:'%s:%s' success: %s", options.FilePath, options.RemoteName, options.RemotePath, result)
 	_, err = r.d.RunCommandSync(container, []string{
 		"rm",
 		"-f",
@@ -78,7 +79,7 @@ func (r *RClone) Sync(options RCloneSyncOptions) error {
 		log.Errorf("RClone sync file delete error: %v", err)
 		return err
 	}
-	log.Infof("RClone Sync file delete '%s' success", options.FilePath)
+	log.Debugf("RClone Sync delete local file:'%s' success", options.FilePath)
 
 	return nil
 }

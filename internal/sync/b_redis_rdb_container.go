@@ -2,8 +2,6 @@ package sync
 
 import (
 	"strings"
-
-	log "github.com/sirupsen/logrus"
 )
 
 type RedisRDBContainerBackupper struct {
@@ -19,7 +17,6 @@ type RedisRDBContainerBackupperOptions struct {
 }
 
 func NewRedisContainerRDBBackupper(options RedisRDBContainerBackupperOptions) Backupper {
-	log.Infof("[Debug] RedisRDBContainerBackupperOptions=%v", options)
 	return &RedisRDBContainerBackupper{
 		BackupperOptions{
 			ContainerName: options.ContainerName,

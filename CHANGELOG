@@ -1,0 +1,5 @@
+# Preview version release - `0.1.0`
+1. Only support docker container data sync
+2. support `redis rdb` container
+3. required `rclone` container.
+4. No web ui.

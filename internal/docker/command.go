@@ -4,11 +4,12 @@ import (
 	"bufio"
 	"context"
 	"errors"
+	"io"
+	"strings"
+
 	"github.com/cloudfogtech/sync-up/internal/utils"
 	"github.com/docker/docker/api/types"
 	log "github.com/sirupsen/logrus"
-	"io"
-	"strings"
 )
 
 func (d *Docker) RunCommandAsync(container types.Container, commands []string, resultChan *ResultChan) (chan bool, chan error, error) {
@@ -18,13 +19,13 @@ func (d *Docker) RunCommandAsync(container types.Container, commands []string, r
 		Cmd:          commands,
 	})
 	if err != nil {
-		log.Errorf("Docker Cli ContainerExecCreate error: '%s', %v", strings.Join(commands, " "), err)
+		log.Debugf("Docker Cli ContainerExecCreate error: '%s', %v", strings.Join(commands, " "), err)
 		return nil, nil, err
 	}
 	log.Debugf("ContainerExecCreate - exec id: %s", execResp.ID)
 	containerResponse, err := d.cli.ContainerExecAttach(context.Background(), execResp.ID, types.ExecConfig{})
 	if err != nil {
-		log.Errorf("Docker Cli ContainerExecAttach error: '%s', %v", strings.Join(commands, " "), err)
+		log.Debugf("Docker Cli ContainerExecAttach error: '%s', %v", strings.Join(commands, " "), err)
 		return nil, nil, err
 	}
 	log.Debugf("ContainerExecAttach - containerId: %s, execId: %s", container.ID, execResp.ID)
@@ -36,7 +37,7 @@ func (d *Docker) RunCommandAsync(container types.Container, commands []string, r
 			r, _, err := bufReader.ReadRune()
 			if err != nil {
 				if err == io.EOF {
-					log.Infof("container response read end")
+					log.Debugf("container response read end")
 				} else {
 					log.Errorf("container response read error, %v", err)
 					resultChan.Err <- err
@@ -52,7 +53,7 @@ func (d *Docker) RunCommandAsync(container types.Container, commands []string, r
 		finishChan <- true
 		successChan <- nil
 	}()
-	log.Infof("Container Name='%s', ID='%s', Run='%s'", strings.Join(container.Names, ","), container.ID, strings.Join(commands, " "))
+	log.Debugf("Container Name='%s', ID='%s', Run='%s'", strings.Join(container.Names, ","), container.ID, strings.Join(commands, " "))
 	return finishChan, successChan, nil
 }
 
@@ -64,13 +65,13 @@ func (d *Docker) RunCommandSync(container types.Container, commands []string) (s
 		Cmd:          commands,
 	})
 	if err != nil {
-		log.Errorf("Docker Cli ContainerExecCreate error: '%s', %v", strings.Join(commands, " "), err)
+		log.Debugf("Docker Cli ContainerExecCreate error: '%s', %v", strings.Join(commands, " "), err)
 		return "", err
 	}
 	log.Debugf("ContainerExecCreate - exec id: %s", createResponse.ID)
 	attachResponse, err := d.cli.ContainerExecAttach(context.Background(), createResponse.ID, types.ExecConfig{})
 	if err != nil {
-		log.Errorf("Docker Cli ContainerExecAttach error: '%s', %v", strings.Join(commands, " "), err)
+		log.Debugf("Docker Cli ContainerExecAttach error: '%s', %v", strings.Join(commands, " "), err)
 		return "", err
 	}
 	log.Debugf("ContainerExecAttach - containerId: %s, execId: %s", container.ID, createResponse.ID)
@@ -81,15 +82,15 @@ func (d *Docker) RunCommandSync(container types.Container, commands []string) (s
 	attachResponse.Close()
 	inspectResponse, err := d.cli.ContainerExecInspect(context.Background(), createResponse.ID)
 	if err != nil {
-		log.Errorf("Docker Cli ContainerExecInspect error: '%s', %v", strings.Join(commands, " "), err)
+		log.Debugf("Docker Cli ContainerExecInspect error: '%s', %v", strings.Join(commands, " "), err)
 		return "", err
 	}
 	if inspectResponse.ExitCode != 0 {
-		log.Errorf("Container Exec Error[%d] Name='%s', ID='%s', Run='%s'", inspectResponse.ExitCode, strings.Join(container.Names, ","),
+		log.Debugf("Container Exec Error[%d] Name='%s', ID='%s', Run='%s'", inspectResponse.ExitCode, strings.Join(container.Names, ","),
 			container.ID, strings.Join(commands, " "))
 		return "", errors.New(result)
 	}
-	log.Infof("Container Exec Error[%d] Name='%s', ID='%s', Run='%s'", inspectResponse.ExitCode, strings.Join(container.Names, ","), container.ID, strings.Join(commands, " "))
+	log.Debugf("Container Exec Success[%d] Name='%s', ID='%s', Run='%s'", inspectResponse.ExitCode, strings.Join(container.Names, ","), container.ID, strings.Join(commands, " "))
 	return result, nil
 }
 
@@ -99,9 +100,9 @@ func getDataFromReader(reader *bufio.Reader) (string, error) {
 		r, _, err := reader.ReadRune()
 		if err != nil {
 			if err == io.EOF {
-				log.Infof("container response read end")
+				log.Debugf("container response read end")
 			} else {
-				log.Errorf("container response read error, %v", err)
+				log.Debugf("container response read error, %v", err)
 				return "", err
 			}
 			log.Debugf("container response read exit")

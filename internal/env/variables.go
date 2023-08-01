@@ -12,7 +12,7 @@ const (
 	PostfixType         = Split + "TYPE"
 	PostfixContainer    = Split + "CONTAINER"
 	PostfixLocalDirPath = Split + "LOCAL" + PostfixDirPath
-	PostfixCorn         = Split + "CORN"
+	PostfixCron         = Split + "CRON"
 )
 
 const (
@@ -32,42 +32,53 @@ const (
 )
 
 const (
-	ServicePlaceholder = "%s"
-	ServiceIdRegEx     = "([0-9a-zA-Z_-]+)"
+	Placeholder    = "%s"
+	ServiceIdRegEx = "([0-9a-zA-Z_-]+)"
 )
 
 // Common
 
 const (
-	PortTpl         = Prefix + "PORT"
-	DBTypeTpl       = Prefix + "DB"
-	DBDsnTpl        = DBTypeTpl + Split + "DSN"
-	UsernameTpl     = Prefix + "USERNAME"
-	PasswordTpl     = Prefix + "PASSWORD"
-	SecretKeyTpl    = Prefix + "SECRET_KEY"
-	TypeTpl         = Prefix + ServicePlaceholder + PostfixType
-	ContainerTpl    = Prefix + ServicePlaceholder + PostfixContainer
-	LocalDirPathTpl = Prefix + ServicePlaceholder + PostfixLocalDirPath
-	CronTpl         = Prefix + ServicePlaceholder + PostfixCorn
+	DebugTpl                = Prefix + "DEBUG"
+	PortTpl                 = Prefix + "PORT"
+	DBTypeTpl               = Prefix + "DB"
+	DBDsnTpl                = DBTypeTpl + Split + "DSN"
+	UsernameTpl             = Prefix + "USERNAME"
+	PasswordTpl             = Prefix + "PASSWORD"
+	SecretKeyTpl            = Prefix + "SECRET_KEY"
+	ReportTpl               = Prefix + "REPORT" + Split
+	ReportTypesTpl          = ReportTpl + "TYPES"
+	ReportLocalPath         = ReportTpl + "LOCAL" + Split + "PATH"
+	ReportEmailTpl          = ReportTpl + "EMAIL" + Split
+	ReportEmailSmtpHost     = ReportEmailTpl + "HOST"
+	ReportEmailSmtpPort     = ReportEmailTpl + "PORT"
+	ReportEmailSmtpUsername = ReportEmailTpl + "USERNAME"
+	ReportEmailSmtpPassword = ReportEmailTpl + "PASSWORD"
+	ReportEmailSmtpFrom     = ReportEmailTpl + "FROM"
+	ReportEmailSmtpTo       = ReportEmailTpl + "To"
+	TypeTpl                 = Prefix + Placeholder + PostfixType
+	ContainerTpl            = Prefix + Placeholder + PostfixContainer
+	LocalDirPathTpl         = Prefix + Placeholder + PostfixLocalDirPath
+	CronTpl                 = Prefix + Placeholder + PostfixCron
 )
 
 // Common addition
 
 const (
-	ServiceUsernameTpl = Prefix + ServicePlaceholder + PostfixUsername
-	ServicePasswordTpl = Prefix + ServicePlaceholder + PostfixPassword
+	ServiceUsernameTpl = Prefix + Placeholder + PostfixUsername
+	ServicePasswordTpl = Prefix + Placeholder + PostfixPassword
 )
 
 // RClone
 
 const (
-	RCTpl               = Prefix + ServicePlaceholder + PostfixRClone
-	RCDirPathTpl        = Prefix + ServicePlaceholder + PostfixRCloneDirPath
-	RCBandwidthLimitTpl = Prefix + ServicePlaceholder + PostfixRCloneBandwidthLimit
-	RCRemoteNameTpl     = Prefix + ServicePlaceholder + PostfixRCloneRemoteName
-	RCRemotePathTpl     = Prefix + ServicePlaceholder + PostfixRCloneRemotePath
+	RCTpl               = Prefix + Placeholder + PostfixRClone
+	RCDirPathTpl        = Prefix + Placeholder + PostfixRCloneDirPath
+	RCBandwidthLimitTpl = Prefix + Placeholder + PostfixRCloneBandwidthLimit
+	RCRemoteNameTpl     = Prefix + Placeholder + PostfixRCloneRemoteName
+	RCRemotePathTpl     = Prefix + Placeholder + PostfixRCloneRemotePath
 )
 
 // Redis
 
-const RedisRDBFilePathTpl = Prefix + ServicePlaceholder + "_RDB_FILE_PATH"
+const RedisRDBFilePathTpl = Prefix + Placeholder + "_RDB_FILE_PATH"
