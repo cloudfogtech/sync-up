@@ -82,3 +82,7 @@ const (
 // Redis
 
 const RedisRDBFilePathTpl = Prefix + Placeholder + "_RDB_FILE_PATH"
+
+// SQLite
+
+const SQLiteFilePathTpl = Prefix + Placeholder + "_SQLITE_FILE_PATH"

@@ -3,6 +3,7 @@ module github.com/cloudfogtech/sync-up
 go 1.20
 
 require (
+	github.com/agiledragon/gomonkey/v2 v2.10.1
 	github.com/alexflint/go-arg v1.4.3
 	github.com/appleboy/gin-jwt/v2 v2.9.1
 	github.com/docker/docker v1.13.1
@@ -12,6 +13,7 @@ require (
 	github.com/onrik/gorm-logrus v0.5.0
 	github.com/satori/go.uuid v1.2.0
 	github.com/sirupsen/logrus v1.9.3
+	github.com/smartystreets/goconvey v1.8.1
 	golang.org/x/sync v0.3.0
 	gorm.io/driver/mysql v1.5.1
 	gorm.io/driver/postgres v1.5.2
@@ -20,7 +22,10 @@ require (
 )
 
 require (
+	github.com/gopherjs/gopherjs v1.17.2 // indirect
+	github.com/jtolds/gls v4.20.0+incompatible // indirect
 	github.com/robfig/cron/v3 v3.0.1 // indirect
+	github.com/smarty/assertions v1.15.0 // indirect
 	go.uber.org/atomic v1.9.0 // indirect
 )
 

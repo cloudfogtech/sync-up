@@ -3,6 +3,7 @@ package sync
 import (
 	"errors"
 	"fmt"
+
 	"github.com/cloudfogtech/sync-up/internal/common"
 	"github.com/cloudfogtech/sync-up/internal/docker"
 	"github.com/cloudfogtech/sync-up/internal/env"
@@ -13,14 +14,14 @@ type Manager struct {
 }
 
 func NewManager() (*Manager, error) {
-	sm := &Manager{
+	manager := &Manager{
 		syncer: make(map[string]*Syncer),
 	}
-	err := sm.init()
+	err := manager.init()
 	if err != nil {
 		return nil, err
 	}
-	return sm, nil
+	return manager, nil
 }
 
 func (sm *Manager) GetSyncers() []*Syncer {
@@ -44,10 +45,10 @@ func (sm *Manager) init() error {
 	bpm := NewParserManager(m)
 	for _, id := range serviceIds {
 		t := m.GetEnvWithNilCheck(env.TypeTpl, id)
-		if !bpm.CheckType(t) {
+		backupper, err := bpm.NewBackupper(t, id)
+		if err != nil {
 			return errors.New(fmt.Sprintf("'%s' is not a supported type", t))
 		}
-		backupper := bpm.NewBackupper(t, id)
 		sm.Add(id, NewSyncer(d, SyncerOptions{
 			Id:        id,
 			RClone:    NewRClone(d, m.GetEnvWithNilCheck(env.RCTpl, id)),
